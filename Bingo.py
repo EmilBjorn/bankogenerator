@@ -3,19 +3,20 @@ from random import randrange, choice
 
 
 def BingoNum():
+    '''Randomly generates 15 unique numbers between 1 and 90'''
     Numbers = []
     # print(Numbers)
 
-    tens = {}
+    tens = []
 
     for i in range(9):
-        tens[i] = 1
-        n = (i)*10+randrange(10)
-        if n == 0:
+        tens.append(1)
+        n = (i)*10+randrange(10) # Generates one number in each bracket of tens.
+        if n == 0:      # Exception to account for one additional number in the 80's bracket, and one less in the 00's bracket.
             n = 90
         Numbers.append(n)
 
-    while len(Numbers) < 15:
+    while len(Numbers) < 15: # Generates the remaining numbers needed for the full set.
 
         fullNumber = randrange(1, 91)
         firstDigit = fullNumber//10
@@ -29,10 +30,6 @@ def BingoNum():
 
     Numbers.sort()
     return(Numbers)
-    # print("Numbers:")
-    # print(Numbers)
-    # for i in tens:
-    #     print(tens[i])
 
 
 numbers = BingoNum()
