@@ -3,7 +3,7 @@ from random import randrange, choice
 
 
 def BingoNum():
-    '''Randomly generates 15 unique numbers between 1 and 90'''
+    """Randomly generates 15 unique numbers between 1 and 90"""
     Numbers = []
     # print(Numbers)
 
@@ -11,15 +11,17 @@ def BingoNum():
 
     for i in range(9):
         tens.append(1)
-        n = (i)*10+randrange(10) # Generates one number in each bracket of tens.
-        if n == 0:      # Exception to account for one additional number in the 80's bracket, and one less in the 00's bracket.
+        n = (i) * 10 + randrange(10)  # Generates one number in each bracket of tens.
+        if (
+            n == 0
+        ):  # Exception to account for one additional number in the 80's bracket, and one less in the 00's bracket.
             n = 90
         Numbers.append(n)
 
-    while len(Numbers) < 15: # Generates the remaining numbers needed for the full set.
+    while len(Numbers) < 15:  # Generates the remaining numbers needed for the full set.
 
         fullNumber = randrange(1, 91)
-        firstDigit = fullNumber//10
+        firstDigit = fullNumber // 10
 
         if firstDigit == 9:
             firstDigit = 8
@@ -29,7 +31,7 @@ def BingoNum():
                 Numbers.append(fullNumber)
 
     Numbers.sort()
-    return(Numbers)
+    return Numbers
 
 
 numbers = BingoNum()
@@ -43,7 +45,7 @@ for i in numbers:
     if i == 90:
         tens[8] += 1
     else:
-        tens[i//10] += 1
+        tens[i // 10] += 1
 
 
 # looper gennem 0-8, opdaterer NumberDict med placering af tal.
@@ -73,7 +75,7 @@ for i in range(9):
     # udvælg tal i numbers som har 'i' som årti.
     subNumbers = []  # fx [11,16] i 10'erne
     for k in range(len(numbers)):
-        if numbers[k]//10 == i:
+        if numbers[k] // 10 == i:
             subNumbers.append(numbers[k])
 
     subIndex = 0
@@ -88,8 +90,7 @@ print(NumberDict)
 key = 477
 
 im = Image.new("RGB", (1000, 500), "#FFFF00")
-test = Image.open(
-    'C:/Users/Emil/Documents/Python/Bingopladegenerator/Bingoplade.png')
+test = Image.open("C:/Users/Emil/Documents/Python/Bingopladegenerator/Bingoplade.png")
 
 font = ImageFont.truetype("Jost-700-BoldItalic.otf", 320)
 draw = ImageDraw.Draw(test)
